@@ -11,13 +11,11 @@ Each package within a module is a collection of source files in the same directo
 
 # How to import a third-party package in a Go project
 
-we can use command 
-
-1. go get <PACKAGE NAME>
+1. go get <PACKAGE NAME><br/>
 
 
-2. write third party package on go file :_
+2. write third party package on go file :<br/>
     ![alt text](<Screenshot 2024-07-10 at 13.37.27.png>)
-    _
+    <br/>
 
-3. for update packege we can use command : go mod tidy 
+3. for update package we can use command : <br/>go mod tidy 
