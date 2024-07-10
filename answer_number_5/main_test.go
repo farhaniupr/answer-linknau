@@ -1,15 +1,23 @@
-package answernumber5_test
+package main_test
 
-// func TestFormatRupiah(t *testing.T) {
-// 	value_testing := "data"
+import (
+	answernumber5 "answernumber5"
+	"testing"
+)
 
-// 	result := answernumber5.FormatRupiah(12312312)
+func TestGetDataFromApi(t *testing.T) {
+	status := answernumber5.GetDataFromApi([]string{"https://freetestapi.com/api/v1/currencies?limit=100", "https://freetestapi.com/api/v1/countries?limit=100"})
+	if status != "200 OK" {
+		t.Errorf("Expected String(%s) is not same as"+
+			" actual string (%s)", "200 OK", status)
+	}
+}
 
-// 	if result != "data" {
-// 		t.Fatalf("error")
-// 	}
+func TestGetDataFromApiWithoutAwait(t *testing.T) {
+	status := answernumber5.GetDataFromApiWithoutAwait([]string{"https://freetestapi.com/api/v1/currencies?limit=100", "https://freetestapi.com/api/v1/countries?limit=100"})
+	if status != "200 OK" {
+		t.Errorf("Expected String(%s) is not same as"+
+			" actual string (%s)", "200 OK", status)
+	}
 
-// 	if result_testing != "" {
-// 		t.Fatalf("error")
-// 	}
-// }
+}
