@@ -16,5 +16,8 @@ we can use command
 1. go get <PACKAGE NAME>
 
 
-2. write third party package on go file :
+2. write third party package on go file :_
     ![alt text](<Screenshot 2024-07-10 at 13.37.27.png>)
+    _
+
+3. for update packege we can use command : go mod tidy 
