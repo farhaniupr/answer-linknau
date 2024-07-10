@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "51124dd5-3a0b-428d-82ff-e12e31c030c7",
+		"name": "Linknau",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26397676",
+		"_collection_link": "https://cloudy-trinity-259030.postman.co/workspace/CBN-CLoud~54b94107-704f-45b1-b75a-63179632a7b6/collection/26397676-51124dd5-3a0b-428d-82ff-e12e31c030c7?action=share&source=collection_link&creator=26397676"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\" : \"216-253-6879\",\n    \"password\" : \"mypassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\" : \"216-253-6879\",\n    \"password\" : \"mypassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "yusgLGwfiIfZWUnDQZEFisNxcGSHkeXX"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 23 Jun 2024 04:08:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "684"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"request_id\": \"yusgLGwfiIfZWUnDQZEFisNxcGSHkeXX\",\n    \"status\": 200,\n    \"messages\": \"Login Success\",\n    \"data\": {\n        \"phone\": \"216-253-6879\",\n        \"email\": \"Jean_Mosciski@hotmail.com\",\n        \"name\": \"Margaret Sauer\",\n        \"url_photo\": \"https://example.com/photo.jpg\",\n        \"date_birth\": \"1989-06-01T00:00:00+07:00\",\n        \"gender\": \"female\",\n        \"about_me\": \"Deleniti aut reiciendis id vitae corrupti. Perferendis blanditiis consequatur.\",\n        \"instragram_url\": \"\",\n        \"city\": \"North Conradton\",\n        \"country\": \"Lebanon\",\n        \"subscription\": \"free\",\n        \"verify\": \"no\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IjIxNi0yNTMtNjg3OSIsIk5hbWUiOiIiLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4MDgwIiwiZXhwIjoxNzE5MjAyMTA0fQ.sY-iNj99FNjrJsfjpa7v4P51JLDwALNGy50Oe1VEJAo\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "BERANDA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var host = \"http://localhost:8080\"",
+							"var phone = \"216-253-6879\"",
+							"var password = \"mypassword\"",
+							"",
+							"const postRequest = {",
+							"  url: host + '/login',",
+							"  method: 'POST',",
+							"  timeout: 0,",
+							"  header: {",
+							"    \"content-type\": \"application/json\"",
+							"  },",
+							"  body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({ phone : phone, password : password })",
+							"    }",
+							"};",
+							"pm.sendRequest(postRequest, function (err, res) {",
+							"    var responseJson = res.json();",
+							"    pm.environment.set('token', responseJson['data']['token']);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\" : \"216-253-6879\",\n    \"password\" : \"mypassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/beranda",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beranda"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\" : \"216-253-6879\",\n    \"password\" : \"mypassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "yusgLGwfiIfZWUnDQZEFisNxcGSHkeXX"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 23 Jun 2024 04:08:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "684"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"request_id\": \"yusgLGwfiIfZWUnDQZEFisNxcGSHkeXX\",\n    \"status\": 200,\n    \"messages\": \"Login Success\",\n    \"data\": {\n        \"phone\": \"216-253-6879\",\n        \"email\": \"Jean_Mosciski@hotmail.com\",\n        \"name\": \"Margaret Sauer\",\n        \"url_photo\": \"https://example.com/photo.jpg\",\n        \"date_birth\": \"1989-06-01T00:00:00+07:00\",\n        \"gender\": \"female\",\n        \"about_me\": \"Deleniti aut reiciendis id vitae corrupti. Perferendis blanditiis consequatur.\",\n        \"instragram_url\": \"\",\n        \"city\": \"North Conradton\",\n        \"country\": \"Lebanon\",\n        \"subscription\": \"free\",\n        \"verify\": \"no\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IjIxNi0yNTMtNjg3OSIsIk5hbWUiOiIiLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4MDgwIiwiZXhwIjoxNzE5MjAyMTA0fQ.sY-iNj99FNjrJsfjpa7v4P51JLDwALNGy50Oe1VEJAo\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjIxNi0yNTMtNjg3OSIsIm5hbWUiOiJGYXJoYW5pIiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODA4MCIsImV4cCI6MTcyMDczNjYwN30.JCgdAP-3w9koSMxTVmFUGg7c88tV_3Pkjqs2QcL_ba0",
+			"type": "string"
+		}
+	]
+}
